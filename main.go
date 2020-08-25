@@ -1,16 +1,19 @@
 package main
 
 import (
-	"github.com/go-chi/chi/middleware"
-	"github.com/labstack/echo"
+	"log"
+
+	"github.com/labstack/echo/v4"
 )
 
 func main() {
 	e := echo.New()
 
-	e.Use(middleware.Logger())
+	e.POST("/test", testEndpoint)
 
-	e.Get("/", hello)
+	log.Fatal(e.Start(":3000"))
+}
 
-	e.Logger().Fatal(e.Start("3000"))
+func testEndpoint(c echo.Context) error {
+	return c.String(200, "yo")
 }
