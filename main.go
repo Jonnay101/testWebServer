@@ -14,8 +14,6 @@ func main() {
 
 	e.GET("/", hello)
 
-	e.GET("/show", show)
-
 	e.POST("/test", testEndpoint)
 
 	log.Fatal(e.Start(":3000"))
@@ -23,11 +21,6 @@ func main() {
 
 func hello(c echo.Context) error {
 	return c.String(http.StatusOK, "welcome to mini server land")
-}
-
-func show(c echo.Context) error {
-
-	return c.JSON(200, c.Request().Body)
 }
 
 func testEndpoint(c echo.Context) error {
